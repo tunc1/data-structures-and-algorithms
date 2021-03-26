@@ -1,6 +1,6 @@
 def sort(array):
-    string=""
     tmp=[]
+    new_array=[]
     biggest=array[0]
     for item in array:
         if item>biggest:
@@ -10,6 +10,6 @@ def sort(array):
     for item in array:
         tmp[item]+=1
     for i,item in enumerate(tmp):
-        string+=(str(i)+",")*item
-    string=string[:-1]
-    return string
+        for _ in range(item):
+            new_array.append(i)
+    return new_array
