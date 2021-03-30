@@ -1,4 +1,4 @@
-class Node():
+class Node:
     def __init__(self,data):
         self.data=data
         self.next=None
@@ -6,23 +6,25 @@ class Node():
     def hasNext(self):
         return self.next!=None
 
-class CircularLinkedList():
+class CircularLinkedList:
+
     def __init__(self):
-        self.__head=None
-        self.__tail=None
         self.__size=0
-    
+
     def add(self,item):
         node=Node(item)
         if self.is_empty():
-            self.__head=node
             self.__tail=node
-        else:
+        elif self.get_size()>1:
+            node.next=self.__tail.next
             self.__tail.next=node
             self.__tail=node
-            self.__tail.next=self.__head
+        else:
+            node.next=self.__tail
+            self.__tail.next=node
+            self.__tail=node
         self.__size+=1
-
+    
     def add_multiple(self,*items):
         for item in items:
             self.add(item)
@@ -30,14 +32,13 @@ class CircularLinkedList():
     def add_to_index(self,item,index):
         if index==0:
             node=Node(item)
-            node.next=self.__head
-            self.__head=node
+            node.next=self.__tail.next
+            self.__tail.next=node
             self.__size+=1
-            self.__tail.next=self.__head
         elif index>=self.__size:
             self.add(item)
         else:
-            tmp=self.__head
+            tmp=self.__tail.next
             i=0
             while i<index-1:
                 tmp=tmp.next
@@ -46,9 +47,9 @@ class CircularLinkedList():
             node.next=tmp.next
             tmp.next=node
             self.__size+=1
-
+    
     def get(self,index):
-        tmp=self.__head
+        tmp=self.__tail.next
         i=0
         while i<index:
             tmp=tmp.next
@@ -57,16 +58,15 @@ class CircularLinkedList():
     
     def get_last(self):
         return self.get(self.__size-1)
-
+    
     def get_first(self):
         return self.get(0)
     
     def remove(self,index):
         if index==0:
-            self.__head=self.__head.next
-            self.__tail.next=self.__head
+            self.__tail.next=self.__tail.next.next
         else:
-            tmp=self.__head
+            tmp=self.__tail.next
             i=0
             while i<index-1:
                 tmp=tmp.next
@@ -91,9 +91,9 @@ class CircularLinkedList():
     def __str__(self):
         string=""
         if not self.is_empty():
-            tmp=self.__head
+            tmp=self.__tail.next
             string+=str(tmp.data)
-            while tmp.hasNext() and tmp.next!=self.__head:
+            while tmp.hasNext() and tmp.next!=self.__tail.next:
                 tmp=tmp.next
                 string+=","+str(tmp.data)
         return "["+string+"]"
