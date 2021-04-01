@@ -16,6 +16,8 @@ class CircularLinkedListTest(unittest.TestCase):
         self.assertEqual(self.list.get_size(),4)
     
     def test_add_to_index(self):
+        self.list.add_to_index(5,0)
+        self.assertEqual(self.list.get(0),5)
         self.list.add(1)
         self.list.add(3)
         self.list.add_to_index(2,1)
