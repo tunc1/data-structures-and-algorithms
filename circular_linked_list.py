@@ -31,10 +31,13 @@ class CircularLinkedList:
     
     def add_to_index(self,item,index):
         if index==0:
-            node=Node(item)
-            node.next=self.__tail.next
-            self.__tail.next=node
-            self.__size+=1
+            if self.is_empty():
+                self.add(item)
+            else:
+                node=Node(item)
+                node.next=self.__tail.next
+                self.__tail.next=node
+                self.__size+=1
         elif index>=self.__size:
             self.add(item)
         else:
@@ -49,12 +52,15 @@ class CircularLinkedList:
             self.__size+=1
     
     def get(self,index):
-        tmp=self.__tail.next
-        i=0
-        while i<index:
-            tmp=tmp.next
-            i+=1
-        return tmp.data
+        if self.get_size()==1:
+            return self.__tail.data
+        else:
+            tmp=self.__tail.next
+            i=0
+            while i<index:
+                tmp=tmp.next
+                i+=1
+            return tmp.data
     
     def get_last(self):
         return self.get(self.__size-1)
