@@ -28,10 +28,13 @@ class LinkedList():
     
     def add_to_index(self,item,index):
         if index==0:
-            node=Node(item)
-            node.next=self.__head
-            self.__head=node
-            self.__size+=1
+            if self.is_empty():
+                self.add(item)
+            else:
+                node=Node(item)
+                node.next=self.__head
+                self.__head=node
+                self.__size+=1
         elif index>=self.__size:
             self.add(item)
         else:
