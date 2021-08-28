@@ -1,4 +1,4 @@
-package app;
+package app.stack;
 
 @SuppressWarnings("unchecked")
 public class Stack<T>

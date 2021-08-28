@@ -1,4 +1,4 @@
-package app;
+package app.binarysearchtree;
 
 public class BinarySearchTree<E extends Comparable<E>>
 {

@@ -1,4 +1,4 @@
-package app;
+package app.arraylist;
 
 @SuppressWarnings("unchecked")
 public class ArrayList<T>

@@ -1,4 +1,4 @@
-package app;
+package app.binarysearch;
 
 public class BinarySearch
 {

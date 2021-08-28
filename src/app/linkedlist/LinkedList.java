@@ -1,4 +1,4 @@
-package app;
+package app.linkedlist;
 
 public class LinkedList<T>
 {
