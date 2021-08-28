@@ -17,7 +17,7 @@ public class BinarySearch
         int middleIndex=(start+end)/2;
         if(array[middleIndex]>element)
             return search(array, element,0,middleIndex);
-        else if(array[middleIndex]>element)
+        else if(array[middleIndex]<element)
             return search(array, element,middleIndex,end);
         return middleIndex;
     }
